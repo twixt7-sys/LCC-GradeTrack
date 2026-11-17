@@ -51,8 +51,9 @@ class GradeRepository {
     try {
       return await db.transaction((txn) => TermDao(txn).add(t));
     } on DatabaseException catch (e) {
-      if (e.isUniqueConstraintError())
+      if (e.isUniqueConstraintError()) {
         throw const DataException('That term already exists.');
+      }
       rethrow;
     }
   }
@@ -64,8 +65,9 @@ class GradeRepository {
         if (t.isCurrent) await TermDao(txn).setCurrent(t.id!);
       });
     } on DatabaseException catch (e) {
-      if (e.isUniqueConstraintError())
+      if (e.isUniqueConstraintError()) {
         throw const DataException('That term already exists.');
+      }
       rethrow;
     }
   }

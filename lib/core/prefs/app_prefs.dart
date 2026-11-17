@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import 'package:flutter/material.dart';
+import 'package:lcc_gradetrack/ui.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../models/models.dart';

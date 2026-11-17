@@ -71,8 +71,9 @@ class BackupService {
         out[t] = const [];
         continue;
       }
-      if (rows is! List<Object?>)
+      if (rows is! List<Object?>) {
         throw const DataException('The backup is damaged.');
+      }
       out[t] = [
         for (final r in rows)
           if (r is Map<String, Object?>)
@@ -97,8 +98,9 @@ class BackupService {
           }
         }
         final scales = await txn.query('grade_scales', limit: 1);
-        if (scales.isEmpty)
+        if (scales.isEmpty) {
           throw const DataException('The backup has no grade scale.');
+        }
       });
     } on DatabaseException {
       throw const DataException('The backup is damaged and was not restored.');

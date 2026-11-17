@@ -65,13 +65,15 @@ class TargetSolver {
       return calculator.rounding.apply(p) >= targetMin - 1e-9;
     }
 
-    if (reaches(0))
+    if (reaches(0)) {
       return TargetResult(TargetStatus.secured, targetMinPercent: targetMin);
-    if (!reaches(100))
+    }
+    if (!reaches(100)) {
       return TargetResult(
         TargetStatus.unreachable,
         targetMinPercent: targetMin,
       );
+    }
 
     var lo = 0.0;
     var hi = 100.0;

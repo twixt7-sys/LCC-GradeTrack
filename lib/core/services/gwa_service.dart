@@ -43,8 +43,9 @@ class GwaService {
     var u = 0.0;
     for (final r in results) {
       final e = r.equivalent;
-      if (r.mark == null && e != null && e <= passingEquivalent + 1e-9)
+      if (r.mark == null && e != null && e <= passingEquivalent + 1e-9) {
         u += r.subject.units;
+      }
     }
     return u;
   }
