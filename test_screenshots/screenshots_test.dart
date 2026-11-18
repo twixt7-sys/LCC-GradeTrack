@@ -99,6 +99,15 @@ void main() {
     });
   }
 
+  testWidgets('progress scrolled', (tester) async {
+    final app = await createTestApp();
+    await _pumpApp(tester, app);
+    await _go(tester, '/progress');
+    await tester.drag(find.byType(ListView).first, const Offset(0, -500));
+    await tester.pumpAndSettle();
+    await _shot(tester, '07b_progress_scrolled_dark');
+  });
+
   testWidgets('planner', (tester) async {
     final app = await createTestApp();
     await _pumpApp(tester, app);
