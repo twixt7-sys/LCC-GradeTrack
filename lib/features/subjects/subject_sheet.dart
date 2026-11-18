@@ -1,7 +1,7 @@
 import 'package:lcc_gradetrack/ui.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:phosphor_flutter/phosphor_flutter.dart';
+import 'package:lcc_gradetrack/core/theme/icons.dart';
 
 import '../../core/models/models.dart';
 import '../../core/providers/providers.dart';
@@ -204,7 +204,7 @@ class _SubjectSheetState extends ConsumerState<SubjectSheet> {
         title: 'Add subject',
         children: [
           EmptyState(
-            icon: PhosphorIconsRegular.calendarPlus,
+            icon: Ph.calendarPlus,
             title: 'No term yet',
             hint: 'Create a term (semester and school year) first.',
             action: 'Add term',
@@ -313,7 +313,7 @@ class _SubjectSheetState extends ConsumerState<SubjectSheet> {
                           ),
                           child: i == _color
                               ? const Icon(
-                                  PhosphorIconsBold.check,
+                                  PhBold.check,
                                   color: Colors.white,
                                   size: 16,
                                 )
@@ -329,9 +329,7 @@ class _SubjectSheetState extends ConsumerState<SubjectSheet> {
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     Icon(
-                      complete
-                          ? PhosphorIconsBold.checkCircle
-                          : PhosphorIconsBold.warningCircle,
+                      complete ? PhBold.checkCircle : PhBold.warningCircle,
                       size: 13,
                       color: complete ? c.laurel : c.amber,
                     ),
@@ -394,10 +392,7 @@ class _SubjectSheetState extends ConsumerState<SubjectSheet> {
                             : () => setState(() {
                                 _rows.removeAt(i).dispose();
                               }),
-                        icon: Icon(
-                          PhosphorIconsRegular.minusCircle,
-                          color: c.muted,
-                        ),
+                        icon: Icon(Ph.minusCircle, color: c.muted),
                       ),
                     ],
                   ),
@@ -413,7 +408,7 @@ class _SubjectSheetState extends ConsumerState<SubjectSheet> {
                         ..weight.addListener(_rebuild),
                     );
                   }),
-                  icon: const Icon(PhosphorIconsRegular.plus, size: 16),
+                  icon: const Icon(Ph.plus, size: 16),
                   label: const Text('Add component'),
                 ),
               ),
@@ -432,11 +427,7 @@ class _SubjectSheetState extends ConsumerState<SubjectSheet> {
                       AnimatedRotation(
                         turns: _more ? 0.5 : 0,
                         duration: Gt.fast,
-                        child: Icon(
-                          PhosphorIconsRegular.caretDown,
-                          size: 14,
-                          color: c.muted,
-                        ),
+                        child: Icon(Ph.caretDown, size: 14, color: c.muted),
                       ),
                     ],
                   ),

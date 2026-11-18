@@ -1,6 +1,6 @@
 import 'package:lcc_gradetrack/ui.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:phosphor_flutter/phosphor_flutter.dart';
+import 'package:lcc_gradetrack/core/theme/icons.dart';
 
 import '../../core/providers/providers.dart';
 import '../../core/services/gradebook.dart';
@@ -42,7 +42,7 @@ class PlannerScreen extends ConsumerWidget {
         if (items.isEmpty)
           GtCard(
             child: EmptyState(
-              icon: PhosphorIconsRegular.calendarDots,
+              icon: Ph.calendarDots,
               title: 'Nothing planned',
               hint: 'Add quizzes and exams before they happen. They count toward your target and show up in reminders.',
               action: 'Add assessment',
@@ -143,7 +143,14 @@ class _PlanCard extends StatelessWidget {
               children: [
                 Row(
                   children: [
-                    CodeTile(subject: item.subject, size: 20),
+                    Container(
+                      width: 8,
+                      height: 8,
+                      decoration: BoxDecoration(
+                        color: subjectColor(item.subject.colorIdx),
+                        shape: BoxShape.circle,
+                      ),
+                    ),
                     const SizedBox(width: 6),
                     Num(
                       item.subject.code,
@@ -178,7 +185,7 @@ class _PlanCard extends StatelessWidget {
                 style: context.tt.labelMedium!.copyWith(color: tone),
               ),
               const SizedBox(height: 6),
-              Icon(PhosphorIconsRegular.notePencil, size: 18, color: c.muted),
+              Icon(Ph.notePencil, size: 18, color: c.muted),
             ],
           ),
         ],

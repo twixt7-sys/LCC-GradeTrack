@@ -1,5 +1,5 @@
 import 'package:lcc_gradetrack/ui.dart';
-import 'package:phosphor_flutter/phosphor_flutter.dart';
+import 'package:lcc_gradetrack/core/theme/icons.dart';
 
 import '../../core/theme/tokens.dart';
 
@@ -37,7 +37,7 @@ class PageScaffold extends StatelessWidget {
                   IconButton(
                     tooltip: 'Back',
                     onPressed: () => Navigator.of(context).maybePop(),
-                    icon: Icon(PhosphorIconsRegular.arrowLeft, color: c.text),
+                    icon: Icon(Ph.arrowLeft, color: c.text),
                   ),
                   const SizedBox(width: 4),
                   Expanded(

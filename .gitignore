@@ -51,3 +51,6 @@ app.*.map.json
 /android/key.properties
 *.jks
 *.keystore
+
+# Rendered screenshots (regenerate with: flutter test test_screenshots --update-goldens)
+/test_screenshots/out/

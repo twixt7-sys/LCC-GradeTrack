@@ -3,7 +3,7 @@ import 'dart:math' as math;
 import 'package:fl_chart/fl_chart.dart';
 import 'package:lcc_gradetrack/ui.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:phosphor_flutter/phosphor_flutter.dart';
+import 'package:lcc_gradetrack/core/theme/icons.dart';
 
 import '../../core/models/models.dart';
 import '../../core/providers/providers.dart';
@@ -37,11 +37,11 @@ class ProgressScreen extends ConsumerWidget {
 
     Widget trendIcon() {
       if (trend == null || trend.abs() < 0.005) {
-        return Icon(PhosphorIconsBold.minus, size: 20, color: c.muted);
+        return Icon(PhBold.minus, size: 20, color: c.muted);
       }
       // Lower GWA = better.
       return Icon(
-        trend < 0 ? PhosphorIconsFill.triangle : PhosphorIconsFill.triangle,
+        trend < 0 ? PhFill.triangle : PhFill.triangle,
         size: 18,
         color: trend < 0 ? c.laurel : c.red,
       );

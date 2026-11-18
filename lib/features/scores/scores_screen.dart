@@ -2,7 +2,7 @@ import 'package:collection/collection.dart';
 import 'package:lcc_gradetrack/ui.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:phosphor_flutter/phosphor_flutter.dart';
+import 'package:lcc_gradetrack/core/theme/icons.dart';
 
 import '../../core/models/models.dart';
 import '../../core/providers/providers.dart';
@@ -14,10 +14,10 @@ import 'score_sheet.dart';
 import 'score_timeline.dart';
 
 enum Scope {
-  week('Week', PhosphorIconsRegular.square),
-  month('Month', PhosphorIconsRegular.rows),
-  term('Term', PhosphorIconsRegular.gridFour),
-  all('All', PhosphorIconsRegular.circle);
+  week('Week', Ph.square),
+  month('Month', Ph.rows),
+  term('Term', Ph.gridFour),
+  all('All', Ph.circle);
 
   const Scope(this.label, this.icon);
   final String label;
@@ -113,11 +113,7 @@ class _ScoresScreenState extends ConsumerState<ScoresScreen> {
                 ),
                 child: Row(
                   children: [
-                    Icon(
-                      PhosphorIconsRegular.magnifyingGlass,
-                      size: 15,
-                      color: c.muted,
-                    ),
+                    Icon(Ph.magnifyingGlass, size: 15, color: c.muted),
                     const SizedBox(width: 8),
                     Expanded(
                       child: TextField(
@@ -137,11 +133,7 @@ class _ScoresScreenState extends ConsumerState<ScoresScreen> {
                     if (_search.text.isNotEmpty)
                       GestureDetector(
                         onTap: () => setState(_search.clear),
-                        child: Icon(
-                          PhosphorIconsRegular.x,
-                          size: 14,
-                          color: c.muted,
-                        ),
+                        child: Icon(Ph.x, size: 14, color: c.muted),
                       ),
                   ],
                 ),
@@ -209,7 +201,7 @@ class _ScoresScreenState extends ConsumerState<ScoresScreen> {
                       width: 38,
                       height: 38,
                       child: Icon(
-                        PhosphorIconsRegular.funnel,
+                        Ph.funnel,
                         size: 17,
                         color: _filtered || _filterOpen ? c.onPrimary : c.text,
                       ),
@@ -267,7 +259,7 @@ class _ScoresScreenState extends ConsumerState<ScoresScreen> {
         Row(
           children: [
             _Chip(
-              icon: PhosphorIconsBold.checkCircle,
+              icon: PhBold.checkCircle,
               text: '${graded.length} graded',
               fg: c.laurel,
               bg: c.laurel.withValues(alpha: 0.12),
@@ -278,7 +270,7 @@ class _ScoresScreenState extends ConsumerState<ScoresScreen> {
             ),
             const SizedBox(width: 4),
             _Chip(
-              icon: PhosphorIconsBold.percent,
+              icon: PhBold.equals,
               text: avg == null ? 'Avg —' : 'Avg ${fmtPct(avg, dp: 1)}',
               fg: c.text,
               bg: c.raised,
@@ -286,7 +278,7 @@ class _ScoresScreenState extends ConsumerState<ScoresScreen> {
             ),
             const SizedBox(width: 4),
             _Chip(
-              icon: PhosphorIconsBold.hourglass,
+              icon: PhBold.hourglass,
               text: '$upcoming upcoming',
               fg: c.amber,
               bg: c.amber.withValues(alpha: 0.12),
@@ -300,7 +292,7 @@ class _ScoresScreenState extends ConsumerState<ScoresScreen> {
         const SizedBox(height: 8),
         if (scores.isEmpty)
           EmptyState(
-            icon: PhosphorIconsRegular.listChecks,
+            icon: Ph.listChecks,
             title: q.isNotEmpty || _filtered
                 ? 'Nothing matches'
                 : 'No scores in this range',

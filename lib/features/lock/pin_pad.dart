@@ -1,6 +1,6 @@
 import 'package:lcc_gradetrack/ui.dart';
 import 'package:flutter/services.dart';
-import 'package:phosphor_flutter/phosphor_flutter.dart';
+import 'package:lcc_gradetrack/core/theme/icons.dart';
 
 import '../../core/theme/app_theme.dart';
 import '../../core/theme/tokens.dart';
@@ -89,11 +89,7 @@ class PinPad extends StatelessWidget {
             _Key(
               label: 'Delete',
               onTap: onBackspace,
-              child: Icon(
-                PhosphorIconsRegular.backspace,
-                color: c.muted,
-                size: 24,
-              ),
+              child: Icon(Ph.backspace, color: c.muted, size: 24),
             ),
           ],
         ),

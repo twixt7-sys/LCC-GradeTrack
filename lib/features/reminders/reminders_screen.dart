@@ -1,7 +1,7 @@
 import 'package:lcc_gradetrack/ui.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
-import 'package:phosphor_flutter/phosphor_flutter.dart';
+import 'package:lcc_gradetrack/core/theme/icons.dart';
 
 import '../../core/providers/providers.dart';
 import '../../core/services/gradebook.dart';
@@ -42,9 +42,7 @@ class RemindersScreen extends ConsumerWidget {
           child: Row(
             children: [
               Icon(
-                prefs.remindersOn
-                    ? PhosphorIconsRegular.bellRinging
-                    : PhosphorIconsRegular.bellSlash,
+                prefs.remindersOn ? Ph.bellRinging : Ph.bellSlash,
                 color: prefs.remindersOn ? c.primaryText : c.muted,
               ),
               const SizedBox(width: 12),
@@ -56,13 +54,13 @@ class RemindersScreen extends ConsumerWidget {
                   style: context.tt.bodyMedium,
                 ),
               ),
-              Icon(PhosphorIconsRegular.caretRight, size: 14, color: c.faint),
+              Icon(Ph.caretRight, size: 14, color: c.faint),
             ],
           ),
         ),
         if (overdue.isEmpty && soon.isEmpty)
           const EmptyState(
-            icon: PhosphorIconsRegular.bell,
+            icon: Ph.bell,
             title: 'All clear',
             hint:
                 'Nothing is due in the next 3 days and no scores are missing.',

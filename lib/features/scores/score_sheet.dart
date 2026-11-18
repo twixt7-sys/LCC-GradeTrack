@@ -2,7 +2,7 @@ import 'package:collection/collection.dart';
 import 'package:lcc_gradetrack/ui.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:phosphor_flutter/phosphor_flutter.dart';
+import 'package:lcc_gradetrack/core/theme/icons.dart';
 
 import '../../core/models/models.dart';
 import '../../core/providers/providers.dart';
@@ -166,7 +166,7 @@ class _ScoreSheetState extends ConsumerState<ScoreSheet> {
                   overflow: TextOverflow.ellipsis,
                 ),
                 trailing: s.id == _subjectId
-                    ? Icon(PhosphorIconsBold.check, color: ctx.gt.primaryText)
+                    ? Icon(PhBold.check, color: ctx.gt.primaryText)
                     : null,
                 onTap: () => Navigator.pop(ctx, s.id),
               ),
@@ -274,7 +274,7 @@ class _ScoreSheetState extends ConsumerState<ScoreSheet> {
         title: _upcoming ? 'Add assessment' : 'Add score',
         children: [
           EmptyState(
-            icon: PhosphorIconsRegular.books,
+            icon: Ph.books,
             title: 'No subjects in this term',
             hint: 'Add a subject with its grading components first.',
             action: 'Add subject',
@@ -306,7 +306,7 @@ class _ScoreSheetState extends ConsumerState<ScoreSheet> {
           ? TextButton.icon(
               onPressed: _delete,
               style: TextButton.styleFrom(foregroundColor: c.red),
-              icon: const Icon(PhosphorIconsRegular.trash, size: 18),
+              icon: const Icon(Ph.trash, size: 18),
               label: const Text('Delete'),
             )
           : null,
@@ -318,7 +318,7 @@ class _ScoreSheetState extends ConsumerState<ScoreSheet> {
             children: [
               if (widget.subjectId == null)
                 PickerRow(
-                  icon: PhosphorIconsRegular.books,
+                  icon: Ph.books,
                   label: 'Subject',
                   value: subject == null
                       ? 'Choose'
@@ -418,9 +418,7 @@ class _ScoreSheetState extends ConsumerState<ScoreSheet> {
                 child: Row(
                   children: [
                     Icon(
-                      _upcoming
-                          ? PhosphorIconsRegular.scales
-                          : PhosphorIconsRegular.percent,
+                      _upcoming ? Ph.scales : Ph.percent,
                       size: 18,
                       color: c.primaryText,
                     ),
@@ -449,7 +447,7 @@ class _ScoreSheetState extends ConsumerState<ScoreSheet> {
               ),
               const SizedBox(height: 12),
               PickerRow(
-                icon: PhosphorIconsRegular.calendarBlank,
+                icon: Ph.calendarBlank,
                 label: _upcoming ? 'Due date' : 'Date taken',
                 value: fmtMdy(_date),
                 onTap: _pickDate,

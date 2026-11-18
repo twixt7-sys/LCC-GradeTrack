@@ -22,6 +22,7 @@ Future<void> main() async {
     for (final (name, file) in [
       ('Schibsted Grotesk', 'assets/fonts/SchibstedGrotesk-OFL.txt'),
       ('JetBrains Mono', 'assets/fonts/JetBrainsMono-OFL.txt'),
+      ('Phosphor Icons', 'assets/fonts/Phosphor-LICENSE.txt'),
     ]) {
       yield LicenseEntryWithLineBreaks([
         name,

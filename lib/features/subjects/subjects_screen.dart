@@ -1,7 +1,7 @@
 import 'package:lcc_gradetrack/ui.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
-import 'package:phosphor_flutter/phosphor_flutter.dart';
+import 'package:lcc_gradetrack/core/theme/icons.dart';
 
 import '../../core/providers/providers.dart';
 import '../../core/services/grade_calculator.dart';
@@ -77,20 +77,12 @@ class _SubjectsScreenState extends ConsumerState<SubjectsScreen> {
             onChanged: (_) => setState(() {}),
             decoration: InputDecoration(
               hintText: 'Search code, title, instructor',
-              prefixIcon: Icon(
-                PhosphorIconsRegular.magnifyingGlass,
-                size: 18,
-                color: c.muted,
-              ),
+              prefixIcon: Icon(Ph.magnifyingGlass, size: 18, color: c.muted),
               suffixIcon: _search.text.isEmpty
                   ? null
                   : IconButton(
                       tooltip: 'Clear search',
-                      icon: Icon(
-                        PhosphorIconsRegular.x,
-                        size: 16,
-                        color: c.muted,
-                      ),
+                      icon: Icon(Ph.x, size: 16, color: c.muted),
                       onPressed: () => setState(_search.clear),
                     ),
               contentPadding: EdgeInsets.zero,
@@ -113,7 +105,7 @@ class _SubjectsScreenState extends ConsumerState<SubjectsScreen> {
         if (results.isEmpty)
           GtCard(
             child: EmptyState(
-              icon: PhosphorIconsRegular.books,
+              icon: Ph.books,
               title: q.isNotEmpty ? 'No matches' : 'No subjects in this term',
               hint: q.isNotEmpty
                   ? 'Try a subject code like "IT 126".'

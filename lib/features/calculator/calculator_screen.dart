@@ -1,7 +1,8 @@
 import 'package:lcc_gradetrack/ui.dart';
+import 'package:collection/collection.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:phosphor_flutter/phosphor_flutter.dart';
+import 'package:lcc_gradetrack/core/theme/icons.dart';
 
 import '../../core/providers/providers.dart';
 import '../../core/services/grade_calculator.dart';
@@ -200,11 +201,7 @@ class _CalculatorScreenState extends ConsumerState<CalculatorScreen> {
                         onPressed: _rows.length <= 1
                             ? null
                             : () => setState(() => _rows.removeAt(i).dispose()),
-                        icon: Icon(
-                          PhosphorIconsRegular.minusCircle,
-                          size: 20,
-                          color: c.muted,
-                        ),
+                        icon: Icon(Ph.minusCircle, size: 20, color: c.muted),
                       ),
                     ],
                   ),
@@ -213,7 +210,7 @@ class _CalculatorScreenState extends ConsumerState<CalculatorScreen> {
                 alignment: Alignment.centerLeft,
                 child: TextButton.icon(
                   onPressed: () => setState(() => _rows.add(_Row())),
-                  icon: const Icon(PhosphorIconsRegular.plus, size: 16),
+                  icon: const Icon(Ph.plus, size: 16),
                   label: const Text('Add row'),
                 ),
               ),
@@ -267,19 +264,27 @@ class _CalculatorScreenState extends ConsumerState<CalculatorScreen> {
           ..sort((a, b) => a.subject.code.compareTo(b.subject.code));
     if (subjects.isEmpty) {
       return const EmptyState(
-        icon: PhosphorIconsRegular.target,
+        icon: Ph.target,
         title: 'No subjects to plan',
         hint: 'Add subjects in the current term to compute target scores.',
       );
     }
-    _subjectId ??= subjects.first.subject.id;
+    // Default to the first subject that still has work left.
+    _subjectId ??=
+        (subjects.where((x) => x.hasPending).firstOrNull ?? subjects.first)
+            .subject
+            .id;
     final r = subjects.firstWhere(
       (x) => x.subject.id == _subjectId,
       orElse: () => subjects.first,
     );
     final scale = gb.scaleFor(r.subject).sorted();
     final targets = [for (final row in scale.rows) row.equivalent];
-    _target ??= scale.passingEquivalent;
+    // Default target: one step better than now, else the passing grade.
+    final now = r.equivalent;
+    _target ??= now == null
+        ? scale.passingEquivalent
+        : (targets.where((t) => t < now - 1e-9).lastOrNull ?? targets.first);
     final result = TargetSolver(gb.calculator).solve(
       subject: r.subject,
       components: gb.componentsOf(r.subject.id!),

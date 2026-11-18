@@ -96,6 +96,12 @@ class SubjectResult {
   bool get inProgress =>
       !isFinal && mark == null && gradedWeight < totalWeight - 1e-9;
 
+  /// Assessments still to be taken (scored or not).
+  bool get hasPending =>
+      !isFinal &&
+      mark == null &&
+      (inProgress || components.any((c) => c.upcomingCount > 0));
+
   /// Share of the grade that is already graded, 0–100.
   double get gradedShare =>
       totalWeight <= 0 ? 0 : gradedWeight / totalWeight * 100;

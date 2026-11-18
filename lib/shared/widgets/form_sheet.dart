@@ -1,6 +1,6 @@
 import 'package:lcc_gradetrack/ui.dart';
 import 'package:flutter/services.dart';
-import 'package:phosphor_flutter/phosphor_flutter.dart';
+import 'package:lcc_gradetrack/core/theme/icons.dart';
 
 import '../../core/theme/tokens.dart';
 
@@ -61,7 +61,7 @@ class FormSheet extends StatelessWidget {
                 IconButton(
                   tooltip: 'Close',
                   onPressed: () => Navigator.of(context).maybePop(),
-                  icon: Icon(PhosphorIconsRegular.x, color: c.muted),
+                  icon: Icon(Ph.x, color: c.muted),
                 ),
                 Expanded(
                   child: Column(
@@ -95,7 +95,7 @@ class FormSheet extends StatelessWidget {
                       backgroundColor: c.primary,
                       foregroundColor: c.onPrimary,
                     ),
-                    icon: const Icon(PhosphorIconsBold.check, size: 20),
+                    icon: const Icon(PhBold.check, size: 20),
                   )
                 else
                   const SizedBox(width: 48),

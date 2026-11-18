@@ -1,6 +1,6 @@
 import 'package:lcc_gradetrack/ui.dart';
 import 'package:package_info_plus/package_info_plus.dart';
-import 'package:phosphor_flutter/phosphor_flutter.dart';
+import 'package:lcc_gradetrack/core/theme/icons.dart';
 
 import '../../core/theme/app_theme.dart';
 import '../../core/theme/tokens.dart';
@@ -57,7 +57,7 @@ class AboutScreen extends StatelessWidget {
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Icon(PhosphorIconsRegular.shieldCheck, color: c.laurel),
+              Icon(Ph.shieldCheck, color: c.laurel),
               const SizedBox(width: 12),
               Expanded(
                 child: Column(
@@ -103,7 +103,7 @@ class AboutScreen extends StatelessWidget {
               ),
             ),
           ),
-          icon: const Icon(PhosphorIconsRegular.fileText, size: 18),
+          icon: const Icon(Ph.fileText, size: 18),
           label: const Text('Open-source licenses'),
         ),
         const SizedBox(height: 16),

@@ -1,7 +1,7 @@
 import 'package:lcc_gradetrack/ui.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
-import 'package:phosphor_flutter/phosphor_flutter.dart';
+import 'package:lcc_gradetrack/core/theme/icons.dart';
 
 import '../../core/providers/providers.dart';
 import '../../core/theme/format.dart';
@@ -53,7 +53,7 @@ class HistoryScreen extends ConsumerWidget {
         if (terms.isEmpty)
           GtCard(
             child: EmptyState(
-              icon: PhosphorIconsRegular.calendarPlus,
+              icon: Ph.calendarPlus,
               title: 'No terms yet',
               hint: 'Add a semester to start tracking.',
               action: 'Add term',
@@ -166,7 +166,7 @@ class TermDetailScreen extends ConsumerWidget {
         IconButton(
           tooltip: 'Edit term',
           onPressed: () => openTermSheet(context, existing: t),
-          icon: const Icon(PhosphorIconsRegular.pencilSimple),
+          icon: const Icon(Ph.pencilSimple),
         ),
       ],
       children: [

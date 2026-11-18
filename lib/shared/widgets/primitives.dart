@@ -1,6 +1,6 @@
 import 'package:lcc_gradetrack/ui.dart';
 import 'package:flutter/services.dart';
-import 'package:phosphor_flutter/phosphor_flutter.dart';
+import 'package:lcc_gradetrack/core/theme/icons.dart';
 
 import '../../core/models/models.dart';
 import '../../core/services/grade_calculator.dart';
@@ -235,11 +235,11 @@ class StandingTag extends StatelessWidget {
   final bool compact;
 
   static IconData iconFor(Standing s) => switch (s) {
-    Standing.strong => PhosphorIconsBold.arrowUp,
-    Standing.onTrack => PhosphorIconsBold.check,
-    Standing.atRisk => PhosphorIconsBold.warning,
-    Standing.failing => PhosphorIconsBold.x,
-    Standing.none => PhosphorIconsBold.minus,
+    Standing.strong => PhBold.arrowUp,
+    Standing.onTrack => PhBold.check,
+    Standing.atRisk => PhBold.warning,
+    Standing.failing => PhBold.x,
+    Standing.none => PhBold.minus,
   };
 
   @override
@@ -416,8 +416,7 @@ class PickerRow extends StatelessWidget {
               ],
             ),
           ),
-          if (onTap != null)
-            Icon(PhosphorIconsRegular.caretRight, size: 16, color: c.faint),
+          if (onTap != null) Icon(Ph.caretRight, size: 16, color: c.faint),
         ],
       ),
     );
@@ -573,9 +572,7 @@ void showToast(BuildContext context, String message, {bool error = false}) {
         content: Row(
           children: [
             Icon(
-              error
-                  ? PhosphorIconsBold.warningCircle
-                  : PhosphorIconsBold.checkCircle,
+              error ? PhBold.warningCircle : PhBold.checkCircle,
               size: 18,
               color: error ? c.red : c.onInverse,
             ),

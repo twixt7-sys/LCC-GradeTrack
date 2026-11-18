@@ -1,7 +1,7 @@
 import 'package:lcc_gradetrack/ui.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
-import 'package:phosphor_flutter/phosphor_flutter.dart';
+import 'package:lcc_gradetrack/core/theme/icons.dart';
 
 import '../../core/providers/providers.dart';
 import '../../core/services/grade_calculator.dart';
@@ -55,89 +55,81 @@ class _HomeBody extends StatelessWidget {
         .toList();
     final recent = gb.graded(termId: term?.id).take(5).toList();
 
-    return RefreshIndicator(
-      onRefresh: () async {},
-      child: ListView(
-        padding: EdgeInsets.fromLTRB(
-          Gt.pad,
-          4,
-          Gt.pad,
-          shellBottomPad(context),
-        ),
-        children: [
-          _GwaHero(gb: gb),
+    return ListView(
+      padding: EdgeInsets.fromLTRB(Gt.pad, 4, Gt.pad, shellBottomPad(context)),
+      children: [
+        _GwaHero(gb: gb),
+        const SizedBox(height: 10),
+        _StatStrip(results: results),
+        if (upcoming.isNotEmpty) ...[
           const SizedBox(height: 10),
-          _StatStrip(results: results),
-          if (upcoming.isNotEmpty) ...[
-            const SizedBox(height: 10),
-            _NextUp(item: upcoming.first, now: now),
-          ],
-          if (attention.isNotEmpty) ...[
-            const SectionLabel('Needs attention'),
-            GtCard(
-              padding: EdgeInsets.zero,
-              borderColor: c.amber.withValues(alpha: 0.5),
-              child: Column(
-                children: [
-                  for (final (i, r) in attention.indexed) ...[
-                    if (i > 0) const Divider(),
-                    SubjectRow(
-                      result: r,
-                      passing: passing,
-                      onTap: () => context.push('/subject/${r.subject.id}'),
-                    ),
-                  ],
-                ],
-              ),
-            ),
-          ],
-          SectionLabel(
-            'Subjects',
-            trailing: results.isEmpty ? null : 'See all',
-            onTrailing: () => context.go(AppTab.subjects.path),
-          ),
-          if (results.isEmpty)
-            GtCard(
-              child: EmptyState(
-                icon: PhosphorIconsRegular.books,
-                title: 'No subjects yet',
-                hint: term == null
-                    ? 'Add a term, then your subjects.'
-                    : 'Add your ${term.kind.label} subjects with units and grading weights.',
-                action: 'Add subject',
-                onAction: () => openSubjectSheet(context),
-              ),
-            )
-          else
-            GtCard(
-              padding: EdgeInsets.zero,
-              child: Column(
-                children: [
-                  for (final (i, r) in results.indexed) ...[
-                    if (i > 0) const Divider(),
-                    SubjectRow(
-                      result: r,
-                      passing: passing,
-                      onTap: () => context.push('/subject/${r.subject.id}'),
-                    ),
-                  ],
-                ],
-              ),
-            ),
-          if (recent.isNotEmpty) ...[
-            SectionLabel(
-              'Recent scores',
-              trailing: 'All scores',
-              onTrailing: () => context.go(AppTab.scores.path),
-            ),
-            ScoreTimeline(
-              scores: recent,
-              gradebook: gb,
-              onTap: (s) => openScoreSheet(context, existing: s),
-            ),
-          ],
+          _NextUp(item: upcoming.first, now: now),
         ],
-      ),
+        if (attention.isNotEmpty) ...[
+          const SectionLabel('Needs attention'),
+          GtCard(
+            padding: EdgeInsets.zero,
+            borderColor: c.amber.withValues(alpha: 0.5),
+            child: Column(
+              children: [
+                for (final (i, r) in attention.indexed) ...[
+                  if (i > 0) const Divider(),
+                  SubjectRow(
+                    result: r,
+                    passing: passing,
+                    onTap: () => context.push('/subject/${r.subject.id}'),
+                  ),
+                ],
+              ],
+            ),
+          ),
+        ],
+        SectionLabel(
+          'Subjects',
+          trailing: results.isEmpty ? null : 'See all',
+          onTrailing: () => context.go(AppTab.subjects.path),
+        ),
+        if (results.isEmpty)
+          GtCard(
+            child: EmptyState(
+              icon: Ph.books,
+              title: 'No subjects yet',
+              hint: term == null
+                  ? 'Add a term, then your subjects.'
+                  : 'Add your ${term.kind.label} subjects with units and grading weights.',
+              action: 'Add subject',
+              onAction: () => openSubjectSheet(context),
+            ),
+          )
+        else
+          GtCard(
+            padding: EdgeInsets.zero,
+            child: Column(
+              children: [
+                for (final (i, r) in results.indexed) ...[
+                  if (i > 0) const Divider(),
+                  SubjectRow(
+                    result: r,
+                    passing: passing,
+                    onTap: () => context.push('/subject/${r.subject.id}'),
+                  ),
+                ],
+              ],
+            ),
+          ),
+        if (recent.isNotEmpty) ...[
+          SectionLabel(
+            'Recent scores',
+            trailing: 'All scores',
+            onTrailing: () => context.go(AppTab.scores.path),
+          ),
+          ScoreTimeline(
+            scores: recent,
+            gradebook: gb,
+            onTap: (s) => openScoreSheet(context, existing: s),
+          ),
+        ],
+      ],
     );
   }
 }
@@ -198,9 +190,7 @@ class _GwaHero extends StatelessWidget {
                           mainAxisSize: MainAxisSize.min,
                           children: [
                             Icon(
-                              delta < 0
-                                  ? PhosphorIconsBold.arrowDown
-                                  : PhosphorIconsBold.arrowUp,
+                              delta < 0 ? PhBold.arrowDown : PhBold.arrowUp,
                               size: 13,
                               color: delta < 0 ? c.laurel : c.red,
                             ),
@@ -299,11 +289,7 @@ class _NextUp extends StatelessWidget {
               color: c.amber.withValues(alpha: 0.14),
               borderRadius: BorderRadius.circular(12),
             ),
-            child: Icon(
-              PhosphorIconsRegular.calendarDots,
-              color: c.amber,
-              size: 22,
-            ),
+            child: Icon(Ph.calendarDots, color: c.amber, size: 22),
           ),
           const SizedBox(width: 12),
           Expanded(
@@ -325,7 +311,7 @@ class _NextUp extends StatelessWidget {
                   overflow: TextOverflow.ellipsis,
                 ),
                 Text(
-                  '${fmtWmd(item.score.date)} · ${fmtNum(item.component.weight)}% of grade (${item.component.name})',
+                  '${fmtWmd(item.score.date)} · ${fmtNum(item.component.weight)}% of grade',
                   style: context.tt.bodySmall,
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,

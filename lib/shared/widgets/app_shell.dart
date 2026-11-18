@@ -2,7 +2,7 @@ import 'package:lcc_gradetrack/ui.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
-import 'package:phosphor_flutter/phosphor_flutter.dart';
+import 'package:lcc_gradetrack/core/theme/icons.dart';
 
 import '../../core/providers/providers.dart';
 import '../../core/services/gradebook.dart';
@@ -76,7 +76,8 @@ class _AppShellState extends ConsumerState<AppShell> {
   @override
   Widget build(BuildContext context) {
     final c = context.gt;
-    final group = ref.watch(navGroupProvider);
+    // The visible group follows the current tab (deep links, drawer, menus).
+    final group = _tab.group >= 0 ? _tab.group : ref.watch(navGroupProvider);
     final gb = ref.watch(gradebookProvider).value;
     final showFab = _tab != AppTab.progress && _tab != AppTab.calculator;
 
@@ -304,11 +305,7 @@ class _TopBar extends StatelessWidget {
                       ? 'Reminders, $overdue overdue'
                       : 'Reminders',
                   onTap: () => context.push('/reminders'),
-                  child: Icon(
-                    PhosphorIconsRegular.bell,
-                    size: 19,
-                    color: c.text,
-                  ),
+                  child: Icon(Ph.bell, size: 19, color: c.text),
                 ),
                 if (overdue > 0)
                   Positioned(
@@ -405,7 +402,7 @@ class _BottomNav extends StatelessWidget {
                       duration: dur,
                       curve: Gt.curve,
                       child: Icon(
-                        PhosphorIconsBold.arrowsLeftRight,
+                        PhBold.arrowsLeftRight,
                         size: 20,
                         color: c.onInverse,
                       ),
@@ -481,7 +478,7 @@ class _BottomNav extends StatelessWidget {
                             duration: dur,
                             curve: Gt.curve,
                             child: Icon(
-                              PhosphorIconsBold.plus,
+                              PhBold.plus,
                               color: c.onPrimary,
                               size: 24,
                             ),
@@ -642,15 +639,10 @@ class _FabMenu extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.end,
       mainAxisSize: MainAxisSize.min,
       children: [
-        item(PhosphorIconsRegular.calendarPlus, 'Term', onTerm, 3),
-        item(PhosphorIconsRegular.books, 'Subject', onSubject, 2),
-        item(
-          PhosphorIconsRegular.calendarDots,
-          'Upcoming assessment',
-          onUpcoming,
-          1,
-        ),
-        item(PhosphorIconsRegular.notePencil, 'Score', onScore, 0),
+        item(Ph.calendarPlus, 'Term', onTerm, 3),
+        item(Ph.books, 'Subject', onSubject, 2),
+        item(Ph.calendarDots, 'Upcoming assessment', onUpcoming, 1),
+        item(Ph.notePencil, 'Score', onScore, 0),
       ],
     );
   }

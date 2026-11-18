@@ -2,7 +2,7 @@ import 'package:collection/collection.dart';
 import 'package:lcc_gradetrack/ui.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:phosphor_flutter/phosphor_flutter.dart';
+import 'package:lcc_gradetrack/core/theme/icons.dart';
 
 import '../../core/models/models.dart';
 import '../../core/providers/providers.dart';
@@ -77,11 +77,11 @@ class _SubjectDetailScreenState extends ConsumerState<SubjectDetailScreen> {
         IconButton(
           tooltip: 'Add score',
           onPressed: () => openScoreSheet(context, subjectId: s.id),
-          icon: const Icon(PhosphorIconsRegular.plus),
+          icon: const Icon(Ph.plus),
         ),
         PopupMenuButton<String>(
           tooltip: 'More',
-          icon: const Icon(PhosphorIconsRegular.dotsThreeVertical),
+          icon: const Icon(Ph.dotsThreeVertical),
           onSelected: (v) => _menu(v, gb, s),
           itemBuilder: (_) => const [
             PopupMenuItem(value: 'edit', child: Text('Edit subject')),
@@ -172,10 +172,10 @@ class _GradeCard extends StatelessWidget {
               if (r.equivalent != null)
                 _Pill(
                   text: passed
-                      ? (r.inProgress ? 'Passing' : 'Passed')
-                      : (r.inProgress ? 'Below passing' : 'Failed'),
+                      ? (r.hasPending ? 'Passing' : 'Passed')
+                      : (r.hasPending ? 'Below passing' : 'Failed'),
                   color: passed ? c.laurel : c.red,
-                  icon: passed ? PhosphorIconsBold.check : PhosphorIconsBold.x,
+                  icon: passed ? PhBold.check : PhBold.x,
                 ),
               if (r.equivalent != null) StandingTag(r.standing, compact: true),
             ],
@@ -256,11 +256,7 @@ class _ScoresTab extends StatelessWidget {
                     subjectId: s.id,
                     componentId: cr.component.id,
                   ),
-                  icon: Icon(
-                    PhosphorIconsRegular.plusCircle,
-                    size: 20,
-                    color: c.muted,
-                  ),
+                  icon: Icon(Ph.plusCircle, size: 20, color: c.muted),
                 ),
               ],
             ),
@@ -322,11 +318,7 @@ class _ScoresTab extends StatelessWidget {
                                 ),
                               ),
                               if (sc.isUpcoming)
-                                Icon(
-                                  PhosphorIconsRegular.hourglass,
-                                  size: 18,
-                                  color: c.amber,
-                                )
+                                Icon(Ph.hourglass, size: 18, color: c.amber)
                               else
                                 Num(
                                   fmtPct(
@@ -586,25 +578,25 @@ class _TargetCard extends StatelessWidget {
       String body,
     ) = switch (result.status) {
       TargetStatus.secured => (
-        PhosphorIconsRegular.sealCheck,
+        Ph.sealCheck,
         c.laurel,
         '${fmtGrade(target)} is secured',
         'You keep at least ${fmtNum(result.targetMinPercent)}% even with 0 on remaining work.',
       ),
       TargetStatus.needs => (
-        PhosphorIconsRegular.flag,
+        Ph.flag,
         c.primaryText,
         'Target ${fmtGrade(target)} (${fmtNum(result.targetMinPercent)}%)',
         'Score at least ${fmtPct(result.neededPercent)} on all remaining work to reach it.',
       ),
       TargetStatus.unreachable => (
-        PhosphorIconsRegular.warning,
+        Ph.warning,
         c.amber,
         '${fmtGrade(target)} is out of reach',
         'Even 100% on remaining work stays below ${fmtNum(result.targetMinPercent)}%.',
       ),
       TargetStatus.complete => (
-        PhosphorIconsRegular.checkCircle,
+        Ph.checkCircle,
         c.muted,
         'No remaining work',
         'Add upcoming assessments to plan for a target.',

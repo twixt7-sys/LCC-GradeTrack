@@ -2,7 +2,7 @@ import 'package:lcc_gradetrack/ui.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:local_auth/local_auth.dart';
-import 'package:phosphor_flutter/phosphor_flutter.dart';
+import 'package:lcc_gradetrack/core/theme/icons.dart';
 
 import '../../core/models/models.dart';
 import '../../core/providers/providers.dart';
@@ -128,13 +128,13 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
         _Group(
           children: [
             _NavRow(
-              icon: PhosphorIconsRegular.ruler,
+              icon: Ph.ruler,
               title: 'Grade scale',
               value: gb?.defaultScale.name ?? '',
               onTap: () => context.push('/settings/scale'),
             ),
             _NavRow(
-              icon: PhosphorIconsRegular.squaresFour,
+              icon: Ph.squaresFour,
               title: 'Default components',
               value: prefs.componentTemplate.map((x) => x.name).join(', '),
               onTap: () => context.push('/settings/components'),
@@ -175,7 +175,7 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
         _Group(
           children: [
             _SwitchRow(
-              icon: PhosphorIconsRegular.bell,
+              icon: Ph.bell,
               title: 'Assessment reminders',
               hint: 'A notification before each upcoming quiz or exam.',
               value: prefs.remindersOn,
@@ -197,7 +197,7 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
                 ),
               ),
               _NavRow(
-                icon: PhosphorIconsRegular.clock,
+                icon: Ph.clock,
                 title: 'Time',
                 value: prefs.reminderTime.format(context),
                 onTap: () async {
@@ -221,7 +221,7 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
           _Group(
             children: [
               _NavRow(
-                icon: PhosphorIconsRegular.lockSimple,
+                icon: Ph.lockSimple,
                 title: p.hasPin ? 'Change PIN' : 'Set a 4-digit PIN',
                 value: p.hasPin ? 'On' : 'Off',
                 onTap: () => _setPin(p),
@@ -229,7 +229,7 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
               if (p.hasPin) ...[
                 if (_canBio ?? false)
                   _SwitchRow(
-                    icon: PhosphorIconsRegular.fingerprint,
+                    icon: Ph.fingerprint,
                     title: 'Unlock with fingerprint',
                     value: p.biometric,
                     onChanged: (v) => ref
@@ -264,7 +264,7 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
                   ),
                 ),
                 _NavRow(
-                  icon: PhosphorIconsRegular.lockSimpleOpen,
+                  icon: Ph.lockSimpleOpen,
                   title: 'Remove PIN',
                   value: '',
                   color: c.red,
@@ -277,13 +277,13 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
         _Group(
           children: [
             _NavRow(
-              icon: PhosphorIconsRegular.database,
+              icon: Ph.database,
               title: 'Backup, export and reset',
               value: '',
               onTap: () => context.push('/settings/data'),
             ),
             _NavRow(
-              icon: PhosphorIconsRegular.info,
+              icon: Ph.info,
               title: 'About',
               value: '',
               onTap: () => context.push('/about'),
@@ -380,7 +380,7 @@ class _NavRow extends StatelessWidget {
                 ),
               ),
             const SizedBox(width: 6),
-            Icon(PhosphorIconsRegular.caretRight, size: 14, color: c.faint),
+            Icon(Ph.caretRight, size: 14, color: c.faint),
           ],
         ),
       ),

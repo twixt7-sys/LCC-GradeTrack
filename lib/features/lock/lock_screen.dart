@@ -1,8 +1,11 @@
 import 'package:lcc_gradetrack/ui.dart';
+
+import 'dart:math' as math;
+
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:local_auth/local_auth.dart';
-import 'package:phosphor_flutter/phosphor_flutter.dart';
+import 'package:lcc_gradetrack/core/theme/icons.dart';
 
 import '../../core/providers/providers.dart';
 import '../../core/services/pin_service.dart';
@@ -127,8 +130,8 @@ class _LockScreenState extends ConsumerState<LockScreen>
               animation: _shake,
               builder: (context, child) {
                 final t = _shake.value;
-                final dx =
-                    (1 - t) * 10 * (t * 12).remainder(2).sign * (t < 1 ? 1 : 0);
+                // Damped horizontal shake on a wrong PIN.
+                final dx = math.sin(t * math.pi * 6) * 10 * (1 - t);
                 return Transform.translate(
                   offset: Offset(_shake.isAnimating ? dx : 0, 0),
                   child: child,
@@ -149,7 +152,7 @@ class _LockScreenState extends ConsumerState<LockScreen>
                       tooltip: 'Use fingerprint',
                       onPressed: _tryBiometric,
                       icon: Icon(
-                        PhosphorIconsRegular.fingerprint,
+                        Ph.fingerprint,
                         size: 28,
                         color: c.primaryText,
                       ),

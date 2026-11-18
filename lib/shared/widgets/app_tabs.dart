@@ -1,50 +1,20 @@
 import 'package:flutter/widgets.dart';
-import 'package:phosphor_flutter/phosphor_flutter.dart';
+import 'package:lcc_gradetrack/core/theme/icons.dart';
 
 /// Shell tabs. Index = StatefulShellRoute branch index.
 /// Group 0 (Track): Subjects, Scores, Planner. Group 1 (Analyze): Progress, Calculator, History.
 enum AppTab {
-  home('/', 'Home', PhosphorIconsRegular.house, PhosphorIconsFill.house, -1),
-  subjects(
-    '/subjects',
-    'Subjects',
-    PhosphorIconsRegular.books,
-    PhosphorIconsFill.books,
-    0,
-  ),
-  scores(
-    '/scores',
-    'Scores',
-    PhosphorIconsRegular.listChecks,
-    PhosphorIconsFill.listChecks,
-    0,
-  ),
-  planner(
-    '/planner',
-    'Planner',
-    PhosphorIconsRegular.calendarDots,
-    PhosphorIconsFill.calendarDots,
-    0,
-  ),
-  progress(
-    '/progress',
-    'Progress',
-    PhosphorIconsRegular.chartLine,
-    PhosphorIconsFill.chartLine,
-    1,
-  ),
-  calculator(
-    '/calculator',
-    'Calculator',
-    PhosphorIconsRegular.calculator,
-    PhosphorIconsFill.calculator,
-    1,
-  ),
+  home('/', 'Home', Ph.house, PhFill.house, -1),
+  subjects('/subjects', 'Subjects', Ph.books, PhFill.books, 0),
+  scores('/scores', 'Scores', Ph.listChecks, PhFill.listChecks, 0),
+  planner('/planner', 'Planner', Ph.calendarDots, PhFill.calendarDots, 0),
+  progress('/progress', 'Progress', Ph.chartLine, PhFill.chartLine, 1),
+  calculator('/calculator', 'Calculator', Ph.calculator, PhFill.calculator, 1),
   history(
     '/history',
     'History',
-    PhosphorIconsRegular.clockCounterClockwise,
-    PhosphorIconsFill.clockCounterClockwise,
+    Ph.clockCounterClockwise,
+    PhFill.clockCounterClockwise,
     1,
   );
 

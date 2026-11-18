@@ -1,7 +1,7 @@
 import 'package:lcc_gradetrack/ui.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
-import 'package:phosphor_flutter/phosphor_flutter.dart';
+import 'package:lcc_gradetrack/core/theme/icons.dart';
 
 import '../../core/providers/providers.dart';
 import '../../core/theme/format.dart';
@@ -105,33 +105,25 @@ class AppDrawer extends ConsumerWidget {
               ),
             const SectionLabel('App'),
             _Link(
-              icon: PhosphorIconsRegular.ruler,
+              icon: Ph.ruler,
               label: 'Grade scale',
               onTap: () => push('/settings/scale'),
             ),
             _Link(
-              icon: PhosphorIconsRegular.gearSix,
+              icon: Ph.gearSix,
               label: 'Settings',
               onTap: () => push('/settings'),
             ),
             _Link(
-              icon: PhosphorIconsRegular.database,
+              icon: Ph.database,
               label: 'Backup & export',
               onTap: () => push('/settings/data'),
             ),
-            _Link(
-              icon: PhosphorIconsRegular.info,
-              label: 'About',
-              onTap: () => push('/about'),
-            ),
+            _Link(icon: Ph.info, label: 'About', onTap: () => push('/about')),
             const SizedBox(height: 16),
             Row(
               children: [
-                Icon(
-                  PhosphorIconsRegular.deviceMobile,
-                  size: 14,
-                  color: c.faint,
-                ),
+                Icon(Ph.deviceMobile, size: 14, color: c.faint),
                 const SizedBox(width: 6),
                 Expanded(
                   child: Text(
@@ -172,9 +164,7 @@ class _TermRow extends StatelessWidget {
         child: Row(
           children: [
             Icon(
-              selected
-                  ? PhosphorIconsFill.radioButton
-                  : PhosphorIconsRegular.circle,
+              selected ? PhFill.radioButton : Ph.circle,
               size: 18,
               color: selected ? c.primaryText : c.faint,
             ),
@@ -220,7 +210,7 @@ class _Link extends StatelessWidget {
             Icon(icon, size: 20, color: c.muted),
             const SizedBox(width: 14),
             Expanded(child: Text(label, style: context.tt.titleSmall)),
-            Icon(PhosphorIconsRegular.caretRight, size: 14, color: c.faint),
+            Icon(Ph.caretRight, size: 14, color: c.faint),
           ],
         ),
       ),
@@ -341,18 +331,18 @@ class _ProfilePanel extends ConsumerWidget {
                     ),
                     const SizedBox(height: 10),
                     _PanelRow(
-                      icon: PhosphorIconsRegular.userCircle,
+                      icon: Ph.userCircle,
                       label: 'Profile',
                       onTap: () => go('/profile'),
                     ),
                     _PanelRow(
-                      icon: PhosphorIconsRegular.gearSix,
+                      icon: Ph.gearSix,
                       label: 'Settings',
                       onTap: () => go('/settings'),
                     ),
                     if (p?.hasPin ?? false)
                       _PanelRow(
-                        icon: PhosphorIconsRegular.lockSimple,
+                        icon: Ph.lockSimple,
                         label: 'Lock now',
                         onTap: () {
                           Navigator.of(context).pop();

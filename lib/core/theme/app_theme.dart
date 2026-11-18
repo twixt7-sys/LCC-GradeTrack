@@ -39,7 +39,6 @@ TextTheme _textTheme(GtColors c) {
     color: color ?? c.text,
     letterSpacing: ls,
     height: h,
-    fontFeatures: _tabular,
   );
   return TextTheme(
     displaySmall: s(30, FontWeight.w800, ls: -0.6, h: 1.1),

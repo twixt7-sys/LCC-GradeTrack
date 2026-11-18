@@ -7,7 +7,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:path/path.dart' as p;
 import 'package:path_provider/path_provider.dart';
-import 'package:phosphor_flutter/phosphor_flutter.dart';
+import 'package:lcc_gradetrack/core/theme/icons.dart';
 import 'package:printing/printing.dart';
 import 'package:share_plus/share_plus.dart';
 
@@ -160,7 +160,7 @@ class _DataScreenState extends ConsumerState<DataScreen> {
           borderColor: Colors.transparent,
           child: Row(
             children: [
-              Icon(PhosphorIconsRegular.deviceMobile, color: c.primaryText),
+              Icon(Ph.deviceMobile, color: c.primaryText),
               const SizedBox(width: 12),
               Expanded(
                 child: Text(
@@ -178,20 +178,20 @@ class _DataScreenState extends ConsumerState<DataScreen> {
           ),
         const SectionLabel('Backup'),
         _Action(
-          icon: PhosphorIconsRegular.export,
+          icon: Ph.export,
           title: 'Export backup',
           hint: 'A .json file with all terms, subjects and scores',
           onTap: _exportBackup,
         ),
         _Action(
-          icon: PhosphorIconsRegular.downloadSimple,
+          icon: Ph.downloadSimple,
           title: 'Restore from backup',
           hint: 'Replaces the data on this phone',
           onTap: _import,
         ),
         const SectionLabel('Export'),
         _Action(
-          icon: PhosphorIconsRegular.filePdf,
+          icon: Ph.filePdf,
           title: 'Grade report (PDF)',
           hint: gb?.currentTerm == null
               ? 'Current term'
@@ -199,20 +199,20 @@ class _DataScreenState extends ConsumerState<DataScreen> {
           onTap: _pdf,
         ),
         _Action(
-          icon: PhosphorIconsRegular.fileCsv,
+          icon: Ph.fileCsv,
           title: 'All scores (CSV)',
           hint: 'Opens in Sheets or Excel',
           onTap: _csv,
         ),
         const SectionLabel('Other'),
         _Action(
-          icon: PhosphorIconsRegular.student,
+          icon: Ph.student,
           title: 'Load sample semester',
           hint: 'Demo data from the project proposal',
           onTap: _sample,
         ),
         _Action(
-          icon: PhosphorIconsRegular.trash,
+          icon: Ph.trash,
           title: 'Delete all data',
           hint: 'Cannot be undone',
           onTap: _wipe,
@@ -274,7 +274,7 @@ class _Action extends StatelessWidget {
                 ],
               ),
             ),
-            Icon(PhosphorIconsRegular.caretRight, size: 14, color: c.faint),
+            Icon(Ph.caretRight, size: 14, color: c.faint),
           ],
         ),
       ),

@@ -1,7 +1,7 @@
 import 'package:lcc_gradetrack/ui.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:phosphor_flutter/phosphor_flutter.dart';
+import 'package:lcc_gradetrack/core/theme/icons.dart';
 
 import '../../core/models/models.dart';
 import '../../core/providers/providers.dart';
@@ -128,10 +128,7 @@ class _State extends ConsumerState<ComponentsTemplateScreen> {
                         onPressed: _rows.length <= 1
                             ? null
                             : () => setState(() => _rows.removeAt(i)),
-                        icon: Icon(
-                          PhosphorIconsRegular.minusCircle,
-                          color: c.muted,
-                        ),
+                        icon: Icon(Ph.minusCircle, color: c.muted),
                       ),
                     ],
                   ),
@@ -147,7 +144,7 @@ class _State extends ConsumerState<ComponentsTemplateScreen> {
                 r.weight.addListener(() => setState(() {}));
                 _rows.add(r);
               }),
-              icon: const Icon(PhosphorIconsRegular.plus, size: 16),
+              icon: const Icon(Ph.plus, size: 16),
               label: const Text('Add component'),
             ),
             const Spacer(),

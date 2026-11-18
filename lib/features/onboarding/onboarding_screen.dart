@@ -2,7 +2,7 @@ import 'package:lcc_gradetrack/ui.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:local_auth/local_auth.dart';
-import 'package:phosphor_flutter/phosphor_flutter.dart';
+import 'package:lcc_gradetrack/core/theme/icons.dart';
 
 import '../../core/db/seed_sample.dart';
 import '../../core/models/models.dart';
@@ -190,7 +190,7 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
                             minimumSize: const Size(52, 52),
                           ),
                           child: Icon(
-                            PhosphorIconsRegular.arrowLeft,
+                            Ph.arrowLeft,
                             color: c.text,
                             semanticLabel: 'Back',
                           ),
@@ -273,17 +273,14 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
         ),
         const SizedBox(height: 28),
         point(
-          PhosphorIconsRegular.notePencil,
+          Ph.notePencil,
           'Record quiz, assignment, activity and exam scores.',
         ),
         point(
-          PhosphorIconsRegular.scales,
+          Ph.scales,
           'Weighted grades, equivalents and GWA, computed for you.',
         ),
-        point(
-          PhosphorIconsRegular.deviceMobile,
-          'Stays on this phone. No account, no internet.',
-        ),
+        point(Ph.deviceMobile, 'Stays on this phone. No account, no internet.'),
       ],
     );
   }
@@ -348,7 +345,7 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
               IconButton(
                 tooltip: 'Previous year',
                 onPressed: () => setState(() => _termYear--),
-                icon: const Icon(PhosphorIconsRegular.caretLeft),
+                icon: const Icon(Ph.caretLeft),
               ),
               Expanded(
                 child: Text(
@@ -360,7 +357,7 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
               IconButton(
                 tooltip: 'Next year',
                 onPressed: () => setState(() => _termYear++),
-                icon: const Icon(PhosphorIconsRegular.caretRight),
+                icon: const Icon(Ph.caretRight),
               ),
             ],
           ),
@@ -462,9 +459,7 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
           child: Row(
             children: [
               Icon(
-                _pin == null
-                    ? PhosphorIconsRegular.lockSimpleOpen
-                    : PhosphorIconsFill.lockSimple,
+                _pin == null ? Ph.lockSimpleOpen : PhFill.lockSimple,
                 color: _pin == null ? c.muted : c.laurel,
               ),
               const SizedBox(width: 12),
@@ -480,7 +475,7 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
                   child: const Text('Remove'),
                 )
               else
-                Icon(PhosphorIconsRegular.caretRight, size: 14, color: c.faint),
+                Icon(Ph.caretRight, size: 14, color: c.faint),
             ],
           ),
         ),
@@ -490,7 +485,7 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
             padding: const EdgeInsets.fromLTRB(16, 6, 8, 6),
             child: Row(
               children: [
-                Icon(PhosphorIconsRegular.fingerprint, color: c.muted),
+                Icon(Ph.fingerprint, color: c.muted),
                 const SizedBox(width: 12),
                 Expanded(
                   child: Text(
@@ -535,9 +530,7 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
                 ),
               ),
               Icon(
-                on
-                    ? PhosphorIconsFill.radioButton
-                    : PhosphorIconsRegular.circle,
+                on ? PhFill.radioButton : Ph.circle,
                 color: on ? c.primaryText : c.faint,
               ),
             ],
@@ -555,13 +548,13 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
         ),
         option(
           false,
-          PhosphorIconsRegular.books,
+          Ph.books,
           'Start empty',
           'Add your ${_termKind.label} subjects next.',
         ),
         option(
           true,
-          PhosphorIconsRegular.student,
+          Ph.student,
           'Sample semester',
           '3 terms of BSIT subjects with scores, from the project proposal.',
         ),

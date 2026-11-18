@@ -1,7 +1,7 @@
 import 'package:lcc_gradetrack/ui.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:phosphor_flutter/phosphor_flutter.dart';
+import 'package:lcc_gradetrack/core/theme/icons.dart';
 
 import '../../core/models/models.dart';
 import '../../core/providers/providers.dart';
@@ -180,7 +180,7 @@ class _ScaleEditorScreenState extends ConsumerState<ScaleEditorScreen> {
                                       () => _rows.removeAt(i).dispose(),
                                     ),
                               icon: Icon(
-                                PhosphorIconsRegular.minusCircle,
+                                Ph.minusCircle,
                                 size: 20,
                                 color: c.muted,
                               ),
@@ -212,7 +212,7 @@ class _ScaleEditorScreenState extends ConsumerState<ScaleEditorScreen> {
                       alignment: Alignment.centerLeft,
                       child: TextButton.icon(
                         onPressed: () => setState(() => _rows.add(_R(0, 3))),
-                        icon: const Icon(PhosphorIconsRegular.plus, size: 16),
+                        icon: const Icon(Ph.plus, size: 16),
                         label: const Text('Add row'),
                       ),
                     ),

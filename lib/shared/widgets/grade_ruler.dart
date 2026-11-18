@@ -25,22 +25,18 @@ class GradeRuler extends StatelessWidget {
       label: value == null
           ? 'No GWA yet'
           : 'GWA ${value!.toStringAsFixed(2)} on a 1.00 to 5.00 scale',
-      child: TweenAnimationBuilder<double?>(
-        tween: Tween(begin: value, end: value),
-        duration: Gt.med,
-        builder: (context, v, _) => CustomPaint(
-          size: Size.fromHeight(height),
-          painter: _RulerPainter(
-            value: value,
-            steps: [for (final r in scale.sorted().rows) r.equivalent]..sort(),
-            fail: scale.failingEquivalent,
-            line: c.hairline,
-            tick: c.muted,
-            label: c.muted,
-            marker: c.text,
-            fill: c.primary,
-            failColor: c.red,
-          ),
+      child: CustomPaint(
+        size: Size.fromHeight(height),
+        painter: _RulerPainter(
+          value: value,
+          steps: [for (final r in scale.sorted().rows) r.equivalent]..sort(),
+          fail: scale.failingEquivalent,
+          line: c.hairline,
+          tick: c.muted,
+          label: c.muted,
+          marker: c.text,
+          fill: c.primary,
+          failColor: c.red,
         ),
       ),
     );

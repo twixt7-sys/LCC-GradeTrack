@@ -1,6 +1,6 @@
 import 'package:lcc_gradetrack/ui.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:phosphor_flutter/phosphor_flutter.dart';
+import 'package:lcc_gradetrack/core/theme/icons.dart';
 
 import '../../core/models/models.dart';
 import '../../core/providers/providers.dart';
@@ -106,7 +106,7 @@ class _TermSheetState extends ConsumerState<TermSheet> {
           : TextButton.icon(
               onPressed: _delete,
               style: TextButton.styleFrom(foregroundColor: c.red),
-              icon: const Icon(PhosphorIconsRegular.trash, size: 18),
+              icon: const Icon(Ph.trash, size: 18),
               label: const Text('Delete term'),
             ),
       children: [
@@ -118,7 +118,7 @@ class _TermSheetState extends ConsumerState<TermSheet> {
               IconButton(
                 tooltip: 'Previous year',
                 onPressed: () => setState(() => _year--),
-                icon: const Icon(PhosphorIconsRegular.caretLeft),
+                icon: const Icon(Ph.caretLeft),
               ),
               Expanded(
                 child: Text(
@@ -130,7 +130,7 @@ class _TermSheetState extends ConsumerState<TermSheet> {
               IconButton(
                 tooltip: 'Next year',
                 onPressed: () => setState(() => _year++),
-                icon: const Icon(PhosphorIconsRegular.caretRight),
+                icon: const Icon(Ph.caretRight),
               ),
             ],
           ),
